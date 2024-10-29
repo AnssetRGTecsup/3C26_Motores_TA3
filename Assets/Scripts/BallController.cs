@@ -53,6 +53,8 @@ public class BallController : MonoBehaviour
     private void UpdateVelocity(Vector2 modifier) {
         if (modifier == Vector2.up) {
             materialController.ChangeEmissionColor(MaterialChange.OnOnlyVertical);
+        } else if (modifier == Vector2.right) {
+            materialController.ChangeEmissionColor(MaterialChange.OnOnlyVertical);
         }
         myRGBD.velocity = Vector3.Scale(myRGBD.velocity, modifier);
     }
