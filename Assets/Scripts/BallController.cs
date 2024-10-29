@@ -41,4 +41,19 @@ public class BallController : MonoBehaviour
         myRGBD.useGravity = false;
         trailRenderer.enabled = false;
     }
+    private void UpdateVelocity(Vector2 modifier)
+    {
+        if (modifier ==Vector2.up)
+        {
+            materialController.ChangeEmissionColor(MaterialChange.OnOnlyVertical);
+        }
+    }
+    private void OnEnable()
+    {
+        PowerUPModifier.OnVelocityChange += UpdateVelocity;
+    }
+    private void OnDisable()
+    {
+        PowerUPModifier.OnVelocityChange += UpdateVelocity;
+    }
 }
