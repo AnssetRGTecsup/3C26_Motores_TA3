@@ -11,6 +11,15 @@ public class BallController : MonoBehaviour
     [SerializeField] private TrailRenderer trailRenderer;
     public event Action<Vector2> onLaunch;
 
+    private void OnEnable()
+    {
+        PowerUpModifiers.OnVelocityChange += UpdateVelocity;
+    }
+    private void OnDisable()
+    {
+        PowerUpModifiers.OnVelocityChange -= UpdateVelocity;
+    }
+
     private void Start() {
         myRGBD = GetComponent<Rigidbody>();
         trailRenderer = GetComponent<TrailRenderer>();
@@ -40,5 +49,13 @@ public class BallController : MonoBehaviour
         myRGBD.velocity = Vector3.zero;
         myRGBD.useGravity = false;
         trailRenderer.enabled = false;
+    }
+    private void UpdateVelocity(Vector2 modifier)
+    {
+        if (modifier == Vector2.up)
+        {
+            materialController.ChangeEmissionColor(MaterialChange.OnOnlyVertical);
+        }
+        myRGBD.velocity = Vector3.Scale(myRGBD.velocity, modifier);
     }
 }
