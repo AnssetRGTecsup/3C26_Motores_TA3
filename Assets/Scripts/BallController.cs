@@ -22,6 +22,14 @@ public class BallController : MonoBehaviour
         trailRenderer.enabled = false;
     }
 
+    private void OnEnable()
+    {
+        PowerUpModifier.OnVelocityChange += UpdatVelocity;
+    }
+    private void OnDisable()
+    {
+        PowerUpModifier.OnVelocityChange -= UpdatVelocity;
+    }
     public void LaunchSphere(Vector2 velocity){
         materialController.ChangeEmissionColor(MaterialChange.OnLaunch);
 
@@ -40,5 +48,13 @@ public class BallController : MonoBehaviour
         myRGBD.velocity = Vector3.zero;
         myRGBD.useGravity = false;
         trailRenderer.enabled = false;
+    }
+    private void UpdatVelocity(Vector2 modifier)
+    {
+        if(modifier == Vector2.up)
+        {
+            materialController.ChangeEmissionColor(MaterialChange.OnOnlyVertical);
+        }
+        myRGBD.velocity = Vector3.Scale(myRGBD.velocity, modifier);
     }
 }
