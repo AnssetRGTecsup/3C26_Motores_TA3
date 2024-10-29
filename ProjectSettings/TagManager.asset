@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Finnish
+  - powerup
   layers:
   - Default
   - TransparentFX
