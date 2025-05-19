@@ -17,7 +17,7 @@ public class BallController : MonoBehaviour
 
         materialController.ChangeEmissionColor(MaterialChange.Normal);
 
-        myRGBD.velocity = Vector3.zero;
+        myRGBD.linearVelocity = Vector3.zero;
         myRGBD.useGravity = false;
         trailRenderer.enabled = false;
     }
@@ -25,7 +25,7 @@ public class BallController : MonoBehaviour
     public void LaunchSphere(Vector2 velocity){
         materialController.ChangeEmissionColor(MaterialChange.OnLaunch);
 
-        myRGBD.velocity = velocity;
+        myRGBD.linearVelocity = velocity;
         myRGBD.useGravity = true;
 
         trailRenderer.enabled = true;
@@ -37,7 +37,7 @@ public class BallController : MonoBehaviour
 
         materialController.ChangeEmissionColor(MaterialChange.Normal);
 
-        myRGBD.velocity = Vector3.zero;
+        myRGBD.linearVelocity = Vector3.zero;
         myRGBD.useGravity = false;
         trailRenderer.enabled = false;
     }

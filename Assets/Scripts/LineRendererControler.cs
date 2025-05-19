@@ -22,41 +22,35 @@ public class LineRendererControler : MonoBehaviour
 
         Vector3 distance = target.position - originPosition.position;
 
-        float angle = Mathf.Atan2(distance.y, distance.x);
-        float velocity = distance.magnitude;
-
-        step = Mathf.Max(0.0001f, step);
-
-        lineRenderer.positionCount = (int)(totalTime/step) + 2;
-
-        float t = 0f;
-        for (int i = 0; i < lineRenderer.positionCount; i++)
-        {
-            float x = velocity * Mathf.Cos(angle) * t + 0.5f * (currentData.xAcceleration) * Mathf.Pow(t,2);
-            float y = velocity * Mathf.Sin(angle) * t - 0.5f * (-Physics.gravity.y + currentData.yAcceleration) * Mathf.Pow(t,2);
-            lineRenderer.SetPosition(i, originPosition.position + new Vector3(x,y,0));
-
-            t += step;
-        }
+        DrawComplexMovement(distance);
     }
 
     public void SetLine(Vector2 velocityVector){
         if(testing) return;
 
+        DrawComplexMovement(velocityVector);
+    }
+
+    private void DrawComplexMovement(Vector2 velocityVector)
+    {
         float angle = Mathf.Atan2(velocityVector.y, velocityVector.x);
         float velocity = velocityVector.magnitude;
 
         step = Mathf.Max(0.0001f, step);
 
-        lineRenderer.positionCount = (int)(totalTime/step) + 2;
+        lineRenderer.positionCount = (int)(totalTime / step) + 2;
 
 
         float t = 0f;
         for (int i = 0; i < lineRenderer.positionCount; i++)
         {
-            float x = velocity * Mathf.Cos(angle) * t + 0.5f * (currentData.xAcceleration) * Mathf.Pow(t,2);
-            float y = velocity * Mathf.Sin(angle) * t - 0.5f * (-Physics.gravity.y) * Mathf.Pow(t,2);
-            lineRenderer.SetPosition(i, originPosition.position + new Vector3(x,y,0));
+            //x = vt + at(2) / 2
+                //v en x = Cos(Angle)
+            //y = vt - at(2) / 2
+                //v en y = Sin(Angle)
+            float x = velocity * Mathf.Cos(angle) * t + 0.5f * (currentData.xAcceleration) * Mathf.Pow(t, 2);
+            float y = velocity * Mathf.Sin(angle) * t - 0.5f * (-Physics.gravity.y) * Mathf.Pow(t, 2);
+            lineRenderer.SetPosition(i, originPosition.position + new Vector3(x, y, 0));
 
             t += step;
         }

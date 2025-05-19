@@ -20,7 +20,7 @@ public class GuiManager : MonoBehaviour
     private float anguloSen;
     private float anguloCos;
 
-    private float angleX;
+    private float timeAmount = 0;
 
     private void Start() {
         gravityText.text = "g = " + currentData.gravity;
@@ -37,5 +37,12 @@ public class GuiManager : MonoBehaviour
         r = qy * qx * qz;
 
         arrowImg.rotation = r;
+    }
+
+    private void Update()
+    {
+        timeAmount += Time.deltaTime * currentData.accelerationModifier.magnitude * 25f;
+
+        arrowImg.rotation = r * Quaternion.Euler(Vector3.right * timeAmount);
     }
 }
