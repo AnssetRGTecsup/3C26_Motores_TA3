@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class BallController : MonoBehaviour
 {
@@ -43,9 +44,14 @@ public class BallController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Horizonal"))
+        if (other.CompareTag("Horizontal"))
         {
             myRGBD.linearVelocity = new Vector3(0, myRGBD.linearVelocity.y, 0);
+        }
+
+        if (other.CompareTag("Vertical"))
+        {
+            myRGBD.linearVelocity = new Vector3(myRGBD.linearVelocity.x, 0, 0);
         }
     }
 }
