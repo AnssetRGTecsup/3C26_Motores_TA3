@@ -47,5 +47,9 @@ public class BallController : MonoBehaviour
         {
             myRGBD.linearVelocity = new Vector3(0, myRGBD.linearVelocity.y, 0);
         }
+        if (other.CompareTag("Vertical"))
+        {
+            myRGBD.linearVelocity = new Vector3(myRGBD.linearVelocity.x, 0, 0);
+        }
     }
 }
