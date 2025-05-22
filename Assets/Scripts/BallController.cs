@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Rendering;
 
 public class BallController : MonoBehaviour
 {
@@ -40,5 +41,14 @@ public class BallController : MonoBehaviour
         myRGBD.linearVelocity = Vector3.zero;
         myRGBD.useGravity = false;
         trailRenderer.enabled = false;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Horizontal"))
+        {
+            //Vector3 na = new Vector3()
+            // float a = myRGBD.linearVelocity.x;
+            myRGBD.linearVelocity = new Vector3(0, myRGBD.linearVelocity.y, myRGBD.linearVelocity.z);
+        }
     }
 }
