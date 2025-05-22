@@ -31,7 +31,8 @@ public class BallController : MonoBehaviour
         trailRenderer.enabled = true;
     }
 
-    public void ResetPosition(){
+    public void ResetPosition()
+    {
         transform.position = originTransform.position;
         transform.rotation = Quaternion.identity;
 
@@ -41,4 +42,17 @@ public class BallController : MonoBehaviour
         myRGBD.useGravity = false;
         trailRenderer.enabled = false;
     }
+
+        private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Horizontal"))
+        {
+            myRGBD.linearVelocity = new Vector3(0f, myRGBD.linearVelocity.y, 0f);
+        }        
+        if (other.CompareTag("Vertical"))
+        {
+            myRGBD.linearVelocity = new Vector3(myRGBD.linearVelocity.x,0f, 0f);
+        }
+    }
 }
+
