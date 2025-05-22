@@ -11,6 +11,7 @@ public class BallController : MonoBehaviour
     [SerializeField] private TrailRenderer trailRenderer;
     public event Action<Vector2> onLaunch;
 
+    public static event Action OnGravityTrigger;
     private void Start() {
         myRGBD = GetComponent<Rigidbody>();
         trailRenderer = GetComponent<TrailRenderer>();
@@ -50,6 +51,10 @@ public class BallController : MonoBehaviour
         if (other.CompareTag("Vertical"))
         {
             myRGBD.linearVelocity = new Vector3(myRGBD.linearVelocity.x, 0, 0);
+        }
+        if (other.CompareTag("Gravity"))
+        {
+            OnGravityTrigger?.Invoke();
         }
     }
 }
