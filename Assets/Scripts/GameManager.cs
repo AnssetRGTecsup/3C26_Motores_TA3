@@ -14,4 +14,21 @@ public class GameManager : MonoBehaviour
         Debug.Log(currentData.xAcceleration);
         Debug.Log(currentData.yAcceleration);
     }
+    private void UpDateGravity()
+    {
+        Physics.gravity = new Vector3(currentData.xAcceleration, currentData.yAcceleration,0f);
+    }
+    public void ResetNormalGravity()
+    {
+        Physics.gravity = new Vector3(currentData.xAcceleration, currentData.gravity + currentData.yAcceleration, 0f);
+
+    }
+    private void OnEnable()
+    {
+        BallController.OngravityTrigger += UpDateGravity;
+    }
+    private void OnDisable()
+    {
+        BallController.OngravityTrigger -= UpDateGravity;
+    }
 }
