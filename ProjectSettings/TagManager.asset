@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Finnish
+  - Vertical
+  - Horizontal
+  - Gravity
   layers:
   - Default
   - TransparentFX
