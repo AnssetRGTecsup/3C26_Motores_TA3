@@ -10,7 +10,7 @@ public class BallController : MonoBehaviour
     [SerializeField] private Transform originTransform;
     [SerializeField] private TrailRenderer trailRenderer;
     public event Action<Vector2> onLaunch;
-
+    
     private void Start() {
         myRGBD = GetComponent<Rigidbody>();
         trailRenderer = GetComponent<TrailRenderer>();
@@ -40,5 +40,13 @@ public class BallController : MonoBehaviour
         myRGBD.linearVelocity = Vector3.zero;
         myRGBD.useGravity = false;
         trailRenderer.enabled = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Horizontal"))
+        {
+            myRGBD.linearVelocity = new Vector3(0f, myRGBD.linearVelocity.y, 0f);
+        }
     }
 }
