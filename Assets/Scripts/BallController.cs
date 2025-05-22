@@ -41,4 +41,12 @@ public class BallController : MonoBehaviour
         myRGBD.useGravity = false;
         trailRenderer.enabled = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Horizontal"))
+        {
+            myRGBD.linearVelocity = new Vector3(0, myRGBD.linearVelocity.y, myRGBD.linearVelocity.z);
+        }
+    }
 }
