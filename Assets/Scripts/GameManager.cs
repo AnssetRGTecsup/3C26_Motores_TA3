@@ -9,9 +9,25 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Physics.gravity = new Vector3(currentData.xAcceleration,currentData.gravity + currentData.yAcceleration,0f);
 
+        ResetGravity();
         Debug.Log(currentData.xAcceleration);
         Debug.Log(currentData.yAcceleration);
+    }
+    private void updateGravity()
+    {
+        Physics.gravity = new Vector3(currentData.xAcceleration, currentData.yAcceleration, 0f);
+    }
+    public void ResetGravity()
+    {
+        Physics.gravity = new Vector3(currentData.xAcceleration, currentData.gravity + currentData.yAcceleration, 0f);
+    }
+    private void OnEnable()
+    {
+        BallController.OngravityTrigger += updateGravity;
+    }
+    private void OnDisable()
+    {
+        BallController.OngravityTrigger -= updateGravity;
     }
 }
