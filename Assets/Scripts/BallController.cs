@@ -47,14 +47,17 @@ public class BallController : MonoBehaviour
         if (other.CompareTag("Horizontal"))
         {
             myRGBD.linearVelocity = new Vector3(0f, myRGBD.linearVelocity.y, 0f);
+            materialController.ChangeEmissionColor(MaterialChange.OnOnlyHorizontal);
         }
         if (other.CompareTag("Vertical"))
         {
             myRGBD.linearVelocity = new Vector3( myRGBD.linearVelocity.x, 0f, 0f);
+            materialController.ChangeEmissionColor(MaterialChange.OnOnlyVertical);
         }
         if (other.CompareTag("Gravedad"))
         {
             OnGravityTrigger?.Invoke();
+            materialController.ChangeEmissionColor(MaterialChange.OnLooseGravity);
         }
     }
 }
