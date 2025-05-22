@@ -9,6 +9,8 @@ public class BallController : MonoBehaviour
     [SerializeField] private Rigidbody myRGBD;
     [SerializeField] private Transform originTransform;
     [SerializeField] private TrailRenderer trailRenderer;
+
+    public static event Action OnGravityzero;
     public event Action<Vector2> onLaunch;
 
     private void Start() {
@@ -51,6 +53,9 @@ public class BallController : MonoBehaviour
         {
             myRGBD.linearVelocity = new Vector3(myRGBD.linearVelocity.x, 0, myRGBD.linearVelocity.z);
         }
+        if (other.CompareTag("GravityPowerUp"))
+        {
+            OnGravityzero?.Invoke();
+        }
     }
-
 }

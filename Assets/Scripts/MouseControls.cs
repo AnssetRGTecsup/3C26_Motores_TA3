@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class MouseControls : MonoBehaviour
 {
+
     [SerializeField] private Vector2 currentPosition;
     [Header("Mouse Values")]
     [SerializeField] private Vector2 initPosition;
