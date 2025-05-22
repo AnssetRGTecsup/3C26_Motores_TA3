@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     {
         BallController.OnGravityTrigger -= UpdateGravity;
     }
+    public void ResetEscene()
+    {
+        Physics.gravity = new Vector3(currentData.xAcceleration, currentData.gravity + currentData.yAcceleration, 0f);
+    }
 
 }
 
