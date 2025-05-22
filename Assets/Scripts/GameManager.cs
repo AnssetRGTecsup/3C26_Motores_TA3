@@ -14,4 +14,20 @@ public class GameManager : MonoBehaviour
         Debug.Log(currentData.xAcceleration);
         Debug.Log(currentData.yAcceleration);
     }
+    public void UpdateGravity()
+    {
+        Physics.gravity = new Vector3(currentData.xAcceleration, currentData.yAcceleration, 0f);
+    }
+    public void ResetGravity()
+    {
+        Physics.gravity = new Vector3(currentData.xAcceleration, currentData.gravity + currentData.yAcceleration, 0f);
+    }
+    private void OnEnable()
+    {
+        BallController.OnGravityrigger += UpdateGravity;
+    }
+    private void OnDisable()
+    {
+        BallController.OnGravityrigger -= UpdateGravity;
+    }
 }
