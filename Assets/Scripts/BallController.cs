@@ -47,6 +47,10 @@ public class BallController : MonoBehaviour
         {
             myRGBD.linearVelocity = new Vector3(0, myRGBD.linearVelocity.y, myRGBD.linearVelocity.z);
         }
+        if (other.CompareTag("VerticalPowerUp"))
+        {
+            myRGBD.linearVelocity = new Vector3(myRGBD.linearVelocity.x, 0, myRGBD.linearVelocity.z);
+        }
     }
 
 }
