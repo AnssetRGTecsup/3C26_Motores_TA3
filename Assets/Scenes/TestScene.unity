@@ -2341,7 +2341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705c1ec65cf7a694397919a0ff7ff62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialChangeType: 1
+  materialChangeType: 3
 --- !u!65 &1669083238
 BoxCollider:
   m_ObjectHideFlags: 0

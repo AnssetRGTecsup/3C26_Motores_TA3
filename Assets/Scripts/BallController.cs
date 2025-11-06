@@ -10,6 +10,7 @@ public class BallController : MonoBehaviour
     [SerializeField] private Transform originTransform;
     [SerializeField] private TrailRenderer trailRenderer;
     public event Action<Vector2> onLaunch;
+    private Vector3 _baseGravity;
 
     private void Start() {
         myRGBD = GetComponent<Rigidbody>();
@@ -20,6 +21,7 @@ public class BallController : MonoBehaviour
         myRGBD.linearVelocity = Vector3.zero;
         myRGBD.useGravity = false;
         trailRenderer.enabled = false;
+        _baseGravity = Physics.gravity;
     }
 
     private void OnEnable()
@@ -38,13 +40,17 @@ public class BallController : MonoBehaviour
         {
             case MaterialChange.OnOnlyHorizontal:
                 myRGBD.linearVelocity = new Vector3(myRGBD.linearVelocity.x, 0, 0);
+                Physics.gravity = _baseGravity;
                 break;
             case MaterialChange.OnOnlyVertical:
                 myRGBD.linearVelocity = new Vector3(0, myRGBD.linearVelocity.y, 0);
+                Physics.gravity = _baseGravity;
+                break;
+            case MaterialChange.OnLooseGravity:
+                Physics.gravity = Vector3.zero;
                 break;
             default:
                 break;
-                // etc.
         }
     }
 
