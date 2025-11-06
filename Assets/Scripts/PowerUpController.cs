@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PowerUpController : MonoBehaviour
 {
-
     // Evento que se disparará cuando ocurra la colisión con el jugador
     public static event Action<MaterialChange> OnMaterialChangeTriggered;
 
