@@ -8,7 +8,17 @@ public class MaterialController : ScriptableObject
 {
     [SerializeField] private Material ballMaterial;
     [SerializeField] private Color[] emissionsColors;
-    
+
+    private void OnEnable()
+    {
+        PowerUpController.OnMaterialChangeTriggered += ChangeEmissionColor;
+    }
+
+    private void OnDisable()
+    {
+        PowerUpController.OnMaterialChangeTriggered -= ChangeEmissionColor;
+    }
+
     public void ChangeEmissionColor(MaterialChange typeChange){
         switch (typeChange)
         {

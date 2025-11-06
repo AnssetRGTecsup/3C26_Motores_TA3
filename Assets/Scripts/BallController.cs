@@ -22,6 +22,32 @@ public class BallController : MonoBehaviour
         trailRenderer.enabled = false;
     }
 
+    private void OnEnable()
+    {
+        PowerUpController.OnMaterialChangeTriggered += HandleMaterialChange;
+    }
+
+    private void OnDisable()
+    {
+        PowerUpController.OnMaterialChangeTriggered -= HandleMaterialChange;
+    }
+
+    private void HandleMaterialChange(MaterialChange change)
+    {
+        switch (change)
+        {
+            case MaterialChange.OnOnlyHorizontal:
+                myRGBD.linearVelocity = new Vector3(myRGBD.linearVelocity.x, 0, 0);
+                break;
+            case MaterialChange.OnOnlyVertical:
+                myRGBD.linearVelocity = new Vector3(0, myRGBD.linearVelocity.y, 0);
+                break;
+            default:
+                break;
+                // etc.
+        }
+    }
+
     public void LaunchSphere(Vector2 velocity){
         materialController.ChangeEmissionColor(MaterialChange.OnLaunch);
 
