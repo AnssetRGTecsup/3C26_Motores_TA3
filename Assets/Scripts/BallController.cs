@@ -23,11 +23,11 @@ public class BallController : MonoBehaviour
     }
     private void OnEnable()
     {
-        powerup.Oncollision+= ;
+        powerup.Oncollision+= OnCollide;
     }
     private void OnDisable()
     {
-        powerup.Oncollision-= ;
+        powerup.Oncollision-= OnCollide;
     }
 
     public void LaunchSphere(Vector2 velocity){
@@ -61,11 +61,14 @@ public class BallController : MonoBehaviour
                 myRGBD.linearVelocity = new Vector3(0,myRGBD.linearVelocity.y,0);
                 break;
             case MaterialChange.OnOnlyHorizontal:
+                myRGBD.linearVelocity = new Vector3(myRGBD.linearVelocity.x, 0,0);
                 break;
             case MaterialChange.OnLooseGravity:
+              //  myRGBD.linearVelocity = new Vector3(myRGBD.linearVelocity.x,0,0);
                 break;
             default:
                 break;
         }
+
     }
 }
